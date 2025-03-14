@@ -1,0 +1,6 @@
+@DapperEFRepoProject_HostAddress = http://localhost:5056
+
+GET {{DapperEFRepoProject_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
