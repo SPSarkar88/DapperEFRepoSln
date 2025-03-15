@@ -4,18 +4,19 @@ using DapperEFRepoProject.Modules.Contacts.Request;
 using DapperEFRepoProject.Modules.Contacts.Service;
 using FluentValidation;
 using FluentValidation.Results;
+using Carter;
 
-namespace ContactManager.Modules.Contacts.Commands
+namespace DapperEFRepoProject.Modules.Contacts.Command
 {
     /// <summary>
     /// Represents the create contact module.
     /// </summary>
-    public class CreateContactModule : Carter.CarterModule
+    public class CreateContact : CarterModule
     {
         /// <summary>
         /// The logger used to log information to the console.
         /// </summary>
-        private readonly ILogger<CreateContactModule> _logger;
+        private readonly ILogger<CreateContact> _logger;
         /// <summary>
         /// The validator used to validate the request.
         /// </summary>
@@ -30,9 +31,9 @@ namespace ContactManager.Modules.Contacts.Commands
         /// <param name="logger"></param>
         /// <param name="validator"></param>
         /// <param name="contactService"></param>
-        public CreateContactModule(
-            ILogger<CreateContactModule> logger, 
-            IValidator<CreateContactRequest> validator, 
+        public CreateContact(
+            ILogger<CreateContact> logger,
+            IValidator<CreateContactRequest> validator,
             IContactService contactService)
         {
             _logger = logger;
@@ -64,7 +65,7 @@ namespace ContactManager.Modules.Contacts.Commands
                 });
             }
             var contact = request.ToContact();
-            contact.CreatedAt = DateTime.UtcNow; 
+            contact.CreatedAt = DateTime.UtcNow;
             var newContact = await _contactService.CreateContactAsync(contact);
             _logger.LogInformation("Created contact {@Contact}", newContact);
             return newContact is null ? Results.NotFound() : Results.Ok(newContact.ToContactResponse());
