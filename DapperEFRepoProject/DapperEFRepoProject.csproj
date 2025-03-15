@@ -13,12 +13,13 @@
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.14" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.14" />
 	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+	  <PackageReference Include="Carter" Version="8.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Modules\Common\Request\" />
-    <Folder Include="Respository\" />
+    <Folder Include="Modules\Contacts\Query\" />
   </ItemGroup>
 
 </Project>
