@@ -23,7 +23,25 @@ namespace DapperEFRepoProject.Infrastructure.Mapping
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
                 Address = request.Address,
-                CreatedAt = DateTime.UtcNow // Set to current UTC time: 2025-03-14 16:31:45
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            };
+        }
+        /// <summary>
+        /// Converts a <see cref="UpdateContactRequest"/> to a <see cref="Contact"/>.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public static Contact ToContact(this UpdateContactRequest request)
+        {
+            return new Contact
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Email = request.Email,
+                PhoneNumber = request.PhoneNumber,
+                Address = request.Address,
+                UpdatedAt = DateTime.UtcNow // Set to current UTC time: 2025-03-14 16:31:45
             };
         }
         /// <summary>
