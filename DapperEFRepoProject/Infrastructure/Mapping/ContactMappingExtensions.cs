@@ -45,6 +45,15 @@ namespace DapperEFRepoProject.Infrastructure.Mapping
             };
         }
         /// <summary>
+        /// Converts a <see cref="DeleteContactRequest"/> to a <see cref="Contact"/>.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public static Contact ToContact(this DeleteContactRequest request)
+        {
+            return new Contact{Id = request.Id};
+        }
+        /// <summary>
         /// Updates a <see cref="Contact"/> from a <see cref="UpdateContactRequest"/>.
         /// </summary>
         /// <param name="contact"></param>
