@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Modules\Contacts\" />
+    <Folder Include="Modules\Common\Request\" />
     <Folder Include="Respository\" />
   </ItemGroup>
 
