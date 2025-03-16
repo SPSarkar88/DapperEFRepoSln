@@ -1,4 +1,6 @@
 ﻿using Carter;
+using DapperEFRepoProject.Infrastructure.Utility;
+using DapperEFRepoProject.Modules.Common.Response;
 using DapperEFRepoProject.Modules.Contacts.Request;
 using DapperEFRepoProject.Modules.Contacts.Service;
 using FluentValidation;
@@ -21,7 +23,7 @@ namespace DapperEFRepoProject.Modules.Contacts.Query
         /// <summary>
         /// The validator used to validate the request.
         /// </summary>
-        private readonly IValidator<DeleteContactRequest> _validator;
+        private readonly IValidator<GetContactByIdRequest> _validator;
         public GetContactById(
             ILogger<GetContactById> logger, 
             IContactService contactService, 
@@ -48,6 +50,17 @@ namespace DapperEFRepoProject.Modules.Contacts.Query
         public async ValueTask<IResult> GetContactByIdAsync(HttpContext context, int id)
         {
             _logger.LogInformation("Getting contact with id {Id}", id);
+            var request = new GetContactByIdRequest { Id = id };
+            var validationResult = _validator.Validate(request);
+            if (!validationResult.IsValid)
+            {
+                _logger.LogWarning("Validation failed for request {@Request}", request);
+                return Results.BadRequest(new ErrorResponse
+                {
+                    Message = "Validation failed",
+                    ValidationErrors = validationResult.Errors.Select(e => ValidationErrorMapper.MapValidationError(e)).ToList()
+                });
+            }
             var contact = await _contactService.GetContactAsync(id);
             if (contact is null)
             {
