@@ -28,7 +28,7 @@ namespace DapperEFRepoProject.Modules.Contacts.Query
         public GetContactById(
             ILogger<GetContactById> logger, 
             IContactService contactService, 
-            IValidator<DeleteContactRequest> validator)
+            IValidator<GetContactByIdRequest> validator)
         {
             _logger = logger;
             _contactService = contactService;
