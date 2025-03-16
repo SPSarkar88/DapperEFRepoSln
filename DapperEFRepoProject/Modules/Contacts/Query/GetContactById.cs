@@ -1,4 +1,5 @@
 ﻿using Carter;
+using DapperEFRepoProject.Infrastructure.Mapping;
 using DapperEFRepoProject.Infrastructure.Utility;
 using DapperEFRepoProject.Modules.Common.Response;
 using DapperEFRepoProject.Modules.Contacts.Request;
@@ -67,7 +68,7 @@ namespace DapperEFRepoProject.Modules.Contacts.Query
                 return Results.NotFound();
             }
             _logger.LogInformation("Getting contact with id {Id} successful", id);
-            return Results.Ok(contact);
+            return Results.Ok(contact.ToContactResponse());
         }
     }
 }
